@@ -48,7 +48,7 @@ public class TaskGUI extends javax.swing.JFrame {
         lblttask = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         btnfirst = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnprev = new javax.swing.JButton();
         btnlast = new javax.swing.JButton();
         btnnext = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -114,8 +114,18 @@ public class TaskGUI extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         btnfirst.setText("|<");
+        btnfirst.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnfirstActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("<");
+        btnprev.setText("<");
+        btnprev.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnprevActionPerformed(evt);
+            }
+        });
 
         btnlast.setText(">|");
         btnlast.addActionListener(new java.awt.event.ActionListener() {
@@ -138,7 +148,7 @@ public class TaskGUI extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(btnfirst)
                 .addGap(55, 55, 55)
-                .addComponent(jButton2)
+                .addComponent(btnprev)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnnext)
                 .addGap(63, 63, 63)
@@ -150,7 +160,7 @@ public class TaskGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnfirst)
-                    .addComponent(jButton2)
+                    .addComponent(btnprev)
                     .addComponent(btnlast)
                     .addComponent(btnnext))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -200,6 +210,11 @@ public class TaskGUI extends javax.swing.JFrame {
         jMenu3.setText("Insert");
 
         jMenuItem7.setText("Before Current Task");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem7);
 
         mnuinsertafter.setText("After Current Task");
@@ -347,6 +362,31 @@ public class TaskGUI extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, result);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void btnprevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnprevActionPerformed
+        if(curtask==1)return;
+        curtask--;
+        lblctask.setText(""+curtask);
+        t=(Task)li.previous();
+        txtname.setText(t.getName());
+        txtdesc.setText(t.getDescription());
+    }//GEN-LAST:event_btnprevActionPerformed
+
+    private void btnfirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnfirstActionPerformed
+        if(curtask==0)return;
+        while(li.hasPrevious())
+            li.previous();
+        curtask=1;
+        t=(Task)li.next();
+        lblctask.setText(""+curtask);
+        txtname.setText(t.getName());
+        txtdesc.setText(t.getDescription());
+        
+    }//GEN-LAST:event_btnfirstActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -386,7 +426,7 @@ public class TaskGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnfirst;
     private javax.swing.JButton btnlast;
     private javax.swing.JButton btnnext;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnprev;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
