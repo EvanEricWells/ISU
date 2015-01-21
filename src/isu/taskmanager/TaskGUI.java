@@ -7,6 +7,7 @@ package isu.taskmanager;
 
 import java.util.ArrayList;
 import java.util.ListIterator;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -37,19 +38,19 @@ public class TaskGUI extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtname = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtdesc = new javax.swing.JTextArea();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        lblctask = new javax.swing.JLabel();
+        lblttask = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        btnfirst = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnlast = new javax.swing.JButton();
+        btnnext = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -70,9 +71,9 @@ public class TaskGUI extends javax.swing.JFrame {
 
         jLabel2.setText("Description:");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txtdesc.setColumns(20);
+        txtdesc.setRows(5);
+        jScrollPane1.setViewportView(txtdesc);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -88,11 +89,11 @@ public class TaskGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblctask, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
+                .addComponent(lblttask, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -100,8 +101,8 @@ public class TaskGUI extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblttask, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblctask, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
@@ -112,42 +113,57 @@ public class TaskGUI extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jButton1.setText("|<");
+        btnfirst.setText("|<");
 
         jButton2.setText("<");
 
-        jButton3.setText(">|");
+        btnlast.setText(">|");
+        btnlast.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnlastActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText(">");
+        btnnext.setText(">");
+        btnnext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnnextActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jButton1)
+                .addComponent(btnfirst)
                 .addGap(55, 55, 55)
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton4)
+                .addComponent(btnnext)
                 .addGap(63, 63, 63)
-                .addComponent(jButton3))
+                .addComponent(btnlast))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(btnfirst)
                     .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
+                    .addComponent(btnlast)
+                    .addComponent(btnnext))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jMenu1.setText("Program");
 
         jMenuItem1.setText("Show all Tasks");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setText("Exit");
@@ -213,7 +229,7 @@ public class TaskGUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField1)
+                            .addComponent(txtname)
                             .addComponent(jScrollPane1))))
                 .addContainerGap())
         );
@@ -223,7 +239,7 @@ public class TaskGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
@@ -239,16 +255,97 @@ public class TaskGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // TODO add your handling code here:
+        if(tottask==0){
+            JOptionPane.showMessageDialog(this, "No task to replace this with, use Insert instead");
+            return;
+        }
+        
+        String nm = txtname.getText();
+        String d=txtdesc.getText();
+        Task t = new Task(nm, d);
+        if(t.validate()==false){
+            JOptionPane.showMessageDialog(this, "Error - Must enter all information");
+            return;
+        }
+        li.next();
+        li.set(t);
+        li.previous();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        // TODO add your handling code here:
+        if(tottask==0)return;
+        li.next();
+        li.remove();
+        tottask--;
+        lblttask.setText(""+tottask);
+        if(tottask==0){
+            txtname.setText("");
+            txtdesc.setText("");
+            curtask=0;
+            lblctask.setText("N/A");
+            return;
+        }
+        if(tottask>1){
+            li.next();
+            t=(Task)li.previous();
+        }
+        else if(tottask==1){
+            t=(Task)li.previous();
+            curtask=1;
+            lblctask.setText(""+curtask);
+        }
+        txtname.setText(t.getName());
+        txtdesc.setText(t.getDescription());
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void mnuinsertafterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuinsertafterActionPerformed
-        
+        String nm=txtname.getText();
+        String d=txtdesc.getText();
+        Task t = new Task(nm, d);
+        if(t.validate()==false){
+            JOptionPane.showMessageDialog(this, "Error - Must enter all information");
+            return;
+        }
+        if(tottask>0) li.next();
+        li.add(t);
+        li.previous();
+        curtask++;
+        tottask++;
+        lblttask.setText(""+tottask);
+        lblctask.setText(""+curtask);
+        JOptionPane.showMessageDialog(this, "Task Added");
     }//GEN-LAST:event_mnuinsertafterActionPerformed
+
+    private void btnlastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlastActionPerformed
+        if(curtask==tottask)return;
+        while(li.hasNext())
+            li.next();
+        t=(Task)li.previous();
+        curtask=tottask;
+        lblctask.setText(""+curtask);
+        txtname.setText(t.getName());
+        txtdesc.setText(t.getDescription());
+    }//GEN-LAST:event_btnlastActionPerformed
+
+    private void btnnextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnextActionPerformed
+        if(curtask==tottask)return;
+        curtask++;
+        lblctask.setText(""+curtask);
+        li.next();
+        li.next();
+        t=(Task)li.previous();
+        txtname.setText(t.getName());
+        txtdesc.setText(t.getDescription());
+    }//GEN-LAST:event_btnnextActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        String result="";
+        for(int x=0; x<list.size(); x++){
+            t=(Task)list.get(x);
+            result +="TASK "+(x+1)+":\n"+t.toString()+"\n";
+        }
+        JOptionPane.showMessageDialog(this, result);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -286,16 +383,14 @@ public class TaskGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnfirst;
+    private javax.swing.JButton btnlast;
+    private javax.swing.JButton btnnext;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -310,8 +405,10 @@ public class TaskGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lblctask;
+    private javax.swing.JLabel lblttask;
     private javax.swing.JMenuItem mnuinsertafter;
+    private javax.swing.JTextArea txtdesc;
+    private javax.swing.JTextField txtname;
     // End of variables declaration//GEN-END:variables
 }
