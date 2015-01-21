@@ -1,16 +1,15 @@
 
 import javax.swing.DefaultListModel;
 
-
 public class Sorting extends javax.swing.JFrame {
 
     DefaultListModel model = new DefaultListModel();
     int lstnum[] = new int[50000];
-    
+
     public Sorting() {
         initComponents();
         list.setModel(model);
-        
+
     }
 
     /**
@@ -124,18 +123,18 @@ public class Sorting extends javax.swing.JFrame {
 
     private void gennumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gennumActionPerformed
         model.clear();
-        for(int x = 0;x< lstnum.length; x++){
-            lstnum[x]=(int)(Math.random()*50000) +1;
+        for (int x = 0; x < lstnum.length; x++) {
+            lstnum[x] = (int) (Math.random() * 50000) + 1;
             model.addElement(lstnum[x]);
         }
-        
+
     }//GEN-LAST:event_gennumActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         model.clear();
         bubbleSort(lstnum);
-        for(int x = 0;x< lstnum.length; x++){
-            
+        for (int x = 0; x < lstnum.length; x++) {
+
             model.addElement(lstnum[x]);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -143,8 +142,8 @@ public class Sorting extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         model.clear();
         selectionSort(lstnum);
-        for(int x = 0;x< lstnum.length; x++){
-            
+        for (int x = 0; x < lstnum.length; x++) {
+
             model.addElement(lstnum[x]);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -152,22 +151,22 @@ public class Sorting extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         model.clear();
         insertionSort(lstnum);
-        for(int x = 0;x< lstnum.length; x++){
-            
+        for (int x = 0; x < lstnum.length; x++) {
+
             model.addElement(lstnum[x]);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         model.clear();
-        quickSort(lstnum,0 ,lstnum.length-1);
-        for(int x = 0;x< lstnum.length; x++){
-            
+        quickSort(lstnum, 0, lstnum.length - 1);
+        for (int x = 0; x < lstnum.length; x++) {
+
             model.addElement(lstnum[x]);
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    /**        
+    /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -201,102 +200,107 @@ public class Sorting extends javax.swing.JFrame {
             }
         });
     }
-    public static void bubbleSort(int[] a){
-   	int k = 0;
-   	boolean exchangeMade = true;
-	// Make up to n - 1 passes through array, exit 
-	//early if no exchanges are made on previous pass
-  
- 	while ((k < a.length - 1) && exchangeMade){
-      		exchangeMade = false;
-      		k++;
-      		for (int j = 0; j < a.length - k; j++)  
-         		if (a[j] > a[j + 1]){
-            			swap(a, j, j + 1);		 
-            			exchangeMade = true;
-         		}//end if
-		}//end for
-	}//end while
 
+    public static void bubbleSort(int[] a) {
+        int k = 0;
+        boolean exchangeMade = true;
+	// Make up to n - 1 passes through array, exit 
+        //early if no exchanges are made on previous pass
+
+        while ((k < a.length - 1) && exchangeMade) {
+            exchangeMade = false;
+            k++;
+            for (int j = 0; j < a.length - k; j++) {
+                if (a[j] > a[j + 1]) {
+                    swap(a, j, j + 1);
+                    exchangeMade = true;
+                }//end if
+            }
+        }//end for
+    }//end while
 
 //supporting swap method
+    public static void swap(int[] a, int x, int y) {
+        int temp = a[x];
+        a[x] = a[y];
+        a[y] = temp;
+    }
 
-public static void swap(int[] a, int x, int y){
-   int temp = a[x];
-   a[x] = a[y];
-   a[y] = temp;
-}
-
-public static void selectionSort(int[] a){
-   for (int i = 0; i < a.length - 1; i++){
-      int minIndex = findMinimum(a, i);
-      if (minIndex != i)
-	//if lowest is not already in place
-         swap(a, i, minIndex);
-   } //end for
-}  
+    public static void selectionSort(int[] a) {
+        for (int i = 0; i < a.length - 1; i++) {
+            int minIndex = findMinimum(a, i);
+            if (minIndex != i) //if lowest is not already in place
+            {
+                swap(a, i, minIndex);
+            }
+        } //end for
+    }
 
 //supporting findMinimum method
-
-public static int findMinimum(int[] a, int first){
+    public static int findMinimum(int[] a, int first) {
    //first=where to start looking from
-   //assume first is also the smallest for now
-   int minIndex = first; 
-   for (int i = first + 1; i < a.length; i++)
-      if (a[i] < a[minIndex])
-         minIndex = i;
-   return minIndex;
-}
+        //assume first is also the smallest for now
+        int minIndex = first;
+        for (int i = first + 1; i < a.length; i++) {
+            if (a[i] < a[minIndex]) {
+                minIndex = i;
+            }
+        }
+        return minIndex;
+    }
 
-public static void insertionSort(int a[]){
-	int itemToInsert, j;
-	boolean stillLooking;
+    public static void insertionSort(int a[]) {
+        int itemToInsert, j;
+        boolean stillLooking;
 
 	//on the kth pass, pass item k upwards in list
-	//and insert it in its proper place amoung the
-	//first k entries in an array
-
-	for (int k=1; k<a.length; k++){
+        //and insert it in its proper place amoung the
+        //first k entries in an array
+        for (int k = 1; k < a.length; k++) {
 	//move backwards through list, looking for
-	//the right place to insert a[k];
-		itemToInsert = a[k];
-		j=k-1;
-		stillLooking=true;
-		while(j >=0 && stillLooking){
-			if (itemToInsert < a[j]){
-				//move item higher
-				a[j+1] = a[j];
-				j--;
-			}else{
-				//we have found new home for a[k];
-				stillLooking=false;
-			}//end else// j+1 is where the item goes
-			a[j+1]=itemToInsert;
-		}//end while
-  	}//end for
-}//end method
+            //the right place to insert a[k];
+            itemToInsert = a[k];
+            j = k - 1;
+            stillLooking = true;
+            while (j >= 0 && stillLooking) {
+                if (itemToInsert < a[j]) {
+                    //move item higher
+                    a[j + 1] = a[j];
+                    j--;
+                } else {
+                    //we have found new home for a[k];
+                    stillLooking = false;
+                }//end else// j+1 is where the item goes
+                a[j + 1] = itemToInsert;
+            }//end while
+        }//end for
+    }//end method
 
-public static void quickSort (int[] a, int left, int right){
-    if(left>=right)return;
-    int i = left;
-    int j = right;
-    int pivotValue = a[(left+ right)/2];
-    while(i<j){
-        while (a[i]<pivotValue)i++;
-        while (pivotValue<a[j])j--;
-        if(i<=j){
-            int temp = a[i];
-            a[i]=a[j];
-            a[j]=temp;
-            i++;
-            j--;
+    public static void quickSort(int[] a, int left, int right) {
+        if (left >= right) {
+            return;
         }
+        int i = left;
+        int j = right;
+        int pivotValue = a[(left + right) / 2];
+        while (i < j) {
+            while (a[i] < pivotValue) {
+                i++;
+            }
+            while (pivotValue < a[j]) {
+                j--;
+            }
+            if (i <= j) {
+                int temp = a[i];
+                a[i] = a[j];
+                a[j] = temp;
+                i++;
+                j--;
+            }
+        }
+        quickSort(a, left, j);
+        quickSort(a, i, right);
     }
-    quickSort (a, left, j);
-    quickSort (a, i, right);
-}
-
-
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
