@@ -6,7 +6,7 @@ public class Patient {
     String Condition;
     
     public Patient(String name, int priority){
-        name=name;
+        this.name=name;
         if(priority==0){
             Condition="Critical";
         }
