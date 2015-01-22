@@ -321,7 +321,7 @@ public class TaskGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error - Must enter all information");
             return;
         }
-        if(tottask>0) li.next();
+        if(tottask<0) li.next();
         li.add(t);
         li.previous();
         curtask++;
