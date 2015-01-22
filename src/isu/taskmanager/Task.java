@@ -2,8 +2,8 @@ package isu.taskmanager;
 
 public class Task {
 
-    public static String description;
-    public static String name;
+    public String description;
+    public String name;
     
     public Task(String nm, String d){
         name=nm;
@@ -18,11 +18,11 @@ public class Task {
         return name;
     }
     
-    public static void setDescription(String d){
+    public void setDescription(String d){
         description=d;
     }
     
-    public static void setName(String nm){
+    public void setName(String nm){
         name = nm;
     }
     

@@ -52,16 +52,16 @@ public class TaskGUI extends javax.swing.JFrame {
         btnlast = new javax.swing.JButton();
         btnnext = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        showTasks = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        exit = new javax.swing.JMenuItem();
+        replacecurtask = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem7 = new javax.swing.JMenuItem();
+        removecurtask = new javax.swing.JMenuItem();
+        restorecurtask = new javax.swing.JMenuItem();
+        clearscreen = new javax.swing.JMenuItem();
+        aftercurtask = new javax.swing.JMenu();
+        beforecurtask = new javax.swing.JMenuItem();
         mnuinsertafter = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -166,7 +166,7 @@ public class TaskGUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jMenu1.setText("Program");
+        showTasks.setText("Program");
 
         jMenuItem1.setText("Show all Tasks");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -174,14 +174,19 @@ public class TaskGUI extends javax.swing.JFrame {
                 jMenuItem1ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        showTasks.add(jMenuItem1);
 
-        jMenuItem2.setText("Exit");
-        jMenu1.add(jMenuItem2);
+        exit.setText("Exit");
+        exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitActionPerformed(evt);
+            }
+        });
+        showTasks.add(exit);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(showTasks);
 
-        jMenu2.setText("Edit");
+        replacecurtask.setText("Edit");
 
         jMenuItem3.setText("Replace as Current Task");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
@@ -189,33 +194,43 @@ public class TaskGUI extends javax.swing.JFrame {
                 jMenuItem3ActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem3);
+        replacecurtask.add(jMenuItem3);
 
-        jMenuItem4.setText("Remove Current Task");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        removecurtask.setText("Remove Current Task");
+        removecurtask.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                removecurtaskActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem4);
+        replacecurtask.add(removecurtask);
 
-        jMenuItem5.setText("Restore Current Task to Screen");
-        jMenu2.add(jMenuItem5);
-
-        jMenuItem6.setText("Clear Screen");
-        jMenu2.add(jMenuItem6);
-
-        jMenuBar1.add(jMenu2);
-
-        jMenu3.setText("Insert");
-
-        jMenuItem7.setText("Before Current Task");
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+        restorecurtask.setText("Restore Current Task to Screen");
+        restorecurtask.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem7ActionPerformed(evt);
+                restorecurtaskActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem7);
+        replacecurtask.add(restorecurtask);
+
+        clearscreen.setText("Clear Screen");
+        clearscreen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearscreenActionPerformed(evt);
+            }
+        });
+        replacecurtask.add(clearscreen);
+
+        jMenuBar1.add(replacecurtask);
+
+        aftercurtask.setText("Insert");
+
+        beforecurtask.setText("Before Current Task");
+        beforecurtask.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                beforecurtaskActionPerformed(evt);
+            }
+        });
+        aftercurtask.add(beforecurtask);
 
         mnuinsertafter.setText("After Current Task");
         mnuinsertafter.addActionListener(new java.awt.event.ActionListener() {
@@ -223,9 +238,9 @@ public class TaskGUI extends javax.swing.JFrame {
                 mnuinsertafterActionPerformed(evt);
             }
         });
-        jMenu3.add(mnuinsertafter);
+        aftercurtask.add(mnuinsertafter);
 
-        jMenuBar1.add(jMenu3);
+        jMenuBar1.add(aftercurtask);
 
         setJMenuBar(jMenuBar1);
 
@@ -287,7 +302,7 @@ public class TaskGUI extends javax.swing.JFrame {
         li.previous();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void removecurtaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removecurtaskActionPerformed
         if(tottask==0)return;
         li.next();
         li.remove();
@@ -311,7 +326,7 @@ public class TaskGUI extends javax.swing.JFrame {
         }
         txtname.setText(t.getName());
         txtdesc.setText(t.getDescription());
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }//GEN-LAST:event_removecurtaskActionPerformed
 
     private void mnuinsertafterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuinsertafterActionPerformed
         String nm=txtname.getText();
@@ -383,9 +398,37 @@ public class TaskGUI extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnfirstActionPerformed
 
-    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        
-    }//GEN-LAST:event_jMenuItem7ActionPerformed
+    private void beforecurtaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beforecurtaskActionPerformed
+        String nm=txtname.getText();
+        String d=txtdesc.getText();
+        Task t = new Task(nm, d);
+        if(t.validate()==false){
+            JOptionPane.showMessageDialog(this, "Error - Must enter all information");
+            return;
+        }
+        if(tottask<0) li.previous();
+        li.add(t);
+        li.previous();
+        curtask--;
+        tottask++;
+        lblttask.setText(""+tottask);
+        lblctask.setText(""+curtask);
+        JOptionPane.showMessageDialog(this, "Task Added");
+    }//GEN-LAST:event_beforecurtaskActionPerformed
+
+    private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_exitActionPerformed
+
+    private void clearscreenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearscreenActionPerformed
+        txtname.setText("");
+        txtdesc.setText("");
+    }//GEN-LAST:event_clearscreenActionPerformed
+
+    private void restorecurtaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restorecurtaskActionPerformed
+        txtname.setText(t.getName());
+        txtdesc.setText(t.getDescription());
+    }//GEN-LAST:event_restorecurtaskActionPerformed
 
     /**
      * @param args the command line arguments
@@ -423,31 +466,31 @@ public class TaskGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu aftercurtask;
+    private javax.swing.JMenuItem beforecurtask;
     private javax.swing.JButton btnfirst;
     private javax.swing.JButton btnlast;
     private javax.swing.JButton btnnext;
     private javax.swing.JButton btnprev;
+    private javax.swing.JMenuItem clearscreen;
+    private javax.swing.JMenuItem exit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblctask;
     private javax.swing.JLabel lblttask;
     private javax.swing.JMenuItem mnuinsertafter;
+    private javax.swing.JMenuItem removecurtask;
+    private javax.swing.JMenu replacecurtask;
+    private javax.swing.JMenuItem restorecurtask;
+    private javax.swing.JMenu showTasks;
     private javax.swing.JTextArea txtdesc;
     private javax.swing.JTextField txtname;
     // End of variables declaration//GEN-END:variables
